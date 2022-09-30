@@ -1,5 +1,6 @@
 import 'package:clone_centauro/componentes/produto/parcelas/parcelas.dart';
 import 'package:clone_centauro/models/produto.dart';
+import 'package:clone_centauro/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 class ProdListGrid extends StatelessWidget {
@@ -49,12 +50,18 @@ class ProdListGrid extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 80,
-                      child: Image.network(
-                        produtos[index].idImagem,
-                        fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                            context, Rotas.detalheProduto,arguments: produtos[index] );
+                      },
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 80,
+                        child: Image.network(
+                          produtos[index].idImagem,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Text(
@@ -94,19 +101,25 @@ class ProdListGrid extends StatelessWidget {
                         )
                       ],
                     ),
-                      Parcelas(parcelinha: precocalculado.toInt())
+                    Parcelas(parcelinha: precocalculado.toInt())
                   ],
                 ),
               )
             : Card(
                 child: ListTile(
-                  leading: SizedBox(
-                    height: double.infinity,
-                    width: 100,
-                    child: Image.network(
-                      produtos[index].idImagem,
-                      fit: BoxFit.cover,
-                      alignment: Alignment.center,
+                  leading: GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                          context, Rotas.detalheProduto,arguments: produtos[index]);
+                    },
+                    child: SizedBox(
+                      height: double.infinity,
+                      width: 100,
+                      child: Image.network(
+                        produtos[index].idImagem,
+                        fit: BoxFit.cover,
+                        alignment: Alignment.center,
+                      ),
                     ),
                   ),
                   title: Text(
@@ -141,16 +154,18 @@ class ProdListGrid extends StatelessWidget {
                         ],
                       ),
                       //preco com desconto
-                       Row(
-                      children: [
-                        Text(
-                          "R\$ ${precocalculado.toStringAsFixed(2)}",
-                          style: TextStyle(fontWeight: FontWeight.w900,color: Colors.black),
-                        )
-                      ],
-                    ),
-                    //parcelas
-                     Parcelas(parcelinha: precocalculado.toInt())
+                      Row(
+                        children: [
+                          Text(
+                            "R\$ ${precocalculado.toStringAsFixed(2)}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: Colors.black),
+                          )
+                        ],
+                      ),
+                      //parcelas
+                      Parcelas(parcelinha: precocalculado.toInt())
                     ],
                   ),
                 ),

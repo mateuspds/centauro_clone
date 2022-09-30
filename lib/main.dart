@@ -1,4 +1,5 @@
 import 'package:clone_centauro/Pages/Produto.dart';
+import 'package:clone_centauro/Pages/detalheProduto.dart';
 import 'package:clone_centauro/date/CardDateProviderImage.dart';
 import 'package:clone_centauro/date/providerProd.dart';
 import 'package:clone_centauro/routes/routes.dart';
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
         initialRoute: Rotas.home,
         routes: {
           Rotas.home: (context) => Home(),
-          Rotas.produto: (context) => produtoCard()
+          Rotas.produto: (context) => produtoCard(),
+          Rotas.detalheProduto:(context) => DetalheProduto()
         },
       ),
     );
